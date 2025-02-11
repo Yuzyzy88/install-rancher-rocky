@@ -36,3 +36,41 @@ Recruitment before install rancher
   ```
   kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{"\n"}}'
   ```
+
+
+### 6. Install kubectl
+
+  ```
+  -LS https://dl.k8s.io/release/stable.txt`/bin/linux/amd64/kubectl
+  ```
+
+  change to excutable and move to your PATH
+
+  ```
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+  ```
+
+  If */usr/local/bin* is not in your PATH. You can add to your bashrc
+
+  ```
+  vim ~/.bashrc
+  ```
+
+  add to the end and save file
+
+  ```
+  export PATH=$PATH:/usr/local/bin
+  ```
+
+  reload bashrc
+
+  ```
+  source ~/.bashrc
+  kubectl version --client
+  ```
+
+### 7. Setting kube config
+  - Download Kubeconfig from your cluster
+  - Create directory  ``` mkdir -p ~/.kube```
+  - Copy your config to ``` vim ~/.kube/config ```
