@@ -4,18 +4,29 @@ Recruitment before install rancher
 - [Docker installed](https://github.com/Yuzyzy88/install-docker-rocky)
 
 
-```
-$ sudo modprobe ip_tables
-$ sudo modprobe ip_conntrack
-$ sudo modprobe iptable_filter
-$ sudo modprobe ipt_state
-```
-  
+### Setting modprobe persistent
 
-### 1. Run docker command to start the Rancher container:
+  ```sudo vim /etc/modules-load.d/<custom-modules>.conf```
+
+  add
+  
+  ```
+  ip_tables
+  ip_conntrack
+  iptable_filter
+  ipt_state
+  ```
+
+### Create direcotry for rancher volume
+
+  ```
+  mkdir /opt/rancher/
+  ````
+
+### 1. Run docker command to start the Rancher container :
    
    ```
-   $ sudo docker run -d --name=rancher --privileged --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest
+   $ sudo docker run -d --name=rancher --privileged --restart=unless-stopped -p 80:80 -p 443:443 -v /opt/rancher:/var/lib/rancher:Z rancher/rancher:latest
    ```
    
    It is maps host port 80 & 443 to the container port 80 & 443 respectively and starts the container in privileged mode
