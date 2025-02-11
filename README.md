@@ -2,6 +2,14 @@
 
 Recruitment before install rancher
 - [Docker installed](https://github.com/Yuzyzy88/install-docker-rocky)
+
+
+```
+$ sudo modprobe ip_tables
+$ sudo modprobe ip_conntrack
+$ sudo modprobe iptable_filter
+$ sudo modprobe ipt_state
+```
   
 
 ### 1. Run docker command to start the Rancher container:
